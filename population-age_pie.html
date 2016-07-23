@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.min.js"></script>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/charts.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="outer">
+        <div class="middle">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-0 col-sm-1 col-md-1 col-lg-1"></div>
+
+                    <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 content">
+                        <!-- caption -->
+                        <h1>Bevölkerung nach Alter (2014)</h1>
+                        <div class="panel">
+
+
+                            <!-- canvas where the chart will be placed -->
+                            <div style="width: 100%">
+                                <canvas id="canvas"></canvas>
+                            </div>
+
+                        </div>
+                        <!-- information about the source of the data -->
+                        <p>
+                            Quelle: Statistisches Landesamt Baden-Württemberg
+                        </p>
+                    </div>
+                    <div class="col-xs-0 col-sm-1 col-md-1 col-lg-1"></div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <script>
+        var randomScalingFactor = function() {
+            return Math.round(Math.random() * 100);
+        };
+        var randomColorFactor = function() {
+            return Math.round(Math.random() * 255);
+        };
+        var randomColor = function(opacity) {
+            return 'rgba(' + randomColorFactor() + ',' + randomColorFactor() + ',' + randomColorFactor() + ',' + (opacity || '.3') + ')';
+        };
+        var config = {
+            type: 'pie',
+            data: {
+                datasets: [{
+                    data: [
+                        1342,
+                        1124,
+                        1086,
+                        995,
+                        1150,
+                        1594,
+                        1643,
+                        1400,
+                        1318,
+                        1075,
+                        1335,
+                        1380,
+                        1108,
+                        918,
+                        865,
+                        451,
+                        529,
+                        304
+                    ],
+                    backgroundColor: [
+                        "#F7464A",
+                        "#46BFBD",
+                        "#FDB45C",
+                        "#949FB1",
+                        "#4D5360",
+                    ],
+                }],
+                labels: [
+                    "0-5",
+                    "6-10",
+                    "11-15",
+                    "16-20",
+                    "21-25",
+                    "26-30",
+                    "31-35",
+                    "36-40",
+                    "41-45",
+                    "46-50",
+                    "51-55",
+                    "56-60",
+                    "61-65",
+                    "66-70",
+                    "71-75",
+                    "76-80",
+                    "81-85",
+                    ">85"
+                ]
+            },
+            options: {
+                responsive: true
+            }
+        };
+        window.onload = function() {
+            var ctx = document.getElementById("canvas").getContext("2d");
+            window.myPie = new Chart(ctx, config);
+        };
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <title>Waldkirch Statistiken - Bevölkerungsentwicklung</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/charts.css" rel="stylesheet">
+    
+</head>
+
+<body>
+    <div id="navigation"></div>
+    <script>
+        $(function() {
+            $("#navigation").load("./navigation.html");
+        });
+    </script>
+
+    <div class="outer">
+        <div class="middle">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-0 col-sm-1 col-md-1 col-lg-1"></div>
+
+                    <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 content">
+                        <!-- caption -->
+                        <h1>Bevölkerung</h1>
+                        <div class="panel">
+
+
+                            <!-- canvas where the chart will be placed -->
+                            <div style="width: 100%">
+                                <canvas id="canvas"></canvas>
+                            </div>
+
+                        </div>
+                        <!-- information about the source of the data -->
+                        <p>
+                            Quelle: Statistisches Landesamt Baden-Württemberg
+                        </p>
+                    </div>
+                    <div class="col-xs-0 col-sm-1 col-md-1 col-lg-1"></div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <script>
+        var barChartData = {
+            labels: ["2015", "2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991"],
+            datasets: [{
+                label: 'Bevölkerung',
+                borderColor: 'rgb(71, 229, 188)',
+                backgroundColor: "rgba(145,249,229,0.5)",
+                data: [21561, 21260, 21141, 21048, 20936, 20857, 20742, 20638, 20642, 20498, 20433, 20227, 20071, 19990, 19889, 19739, 19607, 19493, 19618, 19616, 19617, 19694, 19695, 19675, 19478]
+            }]
+        };
+        window.onload = function() {
+            var ctx = document.getElementById("canvas").getContext("2d");
+            window.myBar = new Chart(ctx, {
+                type: 'bar',
+                data: barChartData,
+                options: {
+                    // Elements options apply to all of the options unless overridden in a dataset
+                    // In this case, we are setting the border of each bar to be 2px wide and green
+                    elements: {
+                        rectangle: {
+                            borderWidth: 1,
+                            borderSkipped: 'bottom'
+                        }
+                    },
+                    responsive: true,
+                    legend: {
+                        display: false,
+                        position: 'top'
+                    },
+                    title: {
+                        display: false,
+                        text: 'Chart.js Bar Chart'
+                    }
+                }
+            });
+        };
+    </script>
+    
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <title>Waldkirch Statistiken - Zu- und Fortzüge</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.bundle.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/charts.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="navigation"></div>
+    <script>
+        $(function() {
+            $("#navigation").load("./navigation.html");
+        });
+    </script>
+
+    <div class="outer">
+        <div class="middle">
+            <div class="container" style="width: 100%">
+                <div class="row">
+                    <div class="col-xs-0 col-sm-1 col-md-1 col-lg-1"></div>
+
+                    <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 content">
+                        <!-- caption -->
+                        <h1>Zu- und Fortzüge</h1>
+                        <div class="panel">
+
+
+                            <!-- canvas where the chart will be placed -->
+                            <div style="width: 100%">
+                                <canvas id="canvas"></canvas>
+                            </div>
+
+                        </div>
+                        <!-- information about the source of the data -->
+                        <p>
+                            Quelle: Statistisches Landesamt Baden-Württemberg
+                        </p>
+                    </div>
+                    <div class="col-xs-0 col-sm-1 col-md-1 col-lg-1"></div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <script>
+        var barChartData = {
+            labels: ["2014", "2013", "2012", "2011", "2010", "2009", "2008", "2007", "2006", "2005", "2004", "2003", "2002", "2001", "2000", "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991"],
+            datasets: [{
+                label: 'Zuzüge',
+                borderColor: 'rgb(71, 229, 188)',
+                backgroundColor: "rgba(145,249,229,0.5)",
+                data: [1360, 1240, 1272, 1297, 1143, 1198, 1103, 1201, 1104, 1231, 1145, 1084, 1039, 1105, 1096, 1167, 1000, 967, 1078, 1078, 1223, 1186, 1216, 1032]
+            },
+            {
+                label: 'Fortzüge',
+                borderColor: 'rgb(215, 38, 62)',
+                backgroundColor: "rgba(231, 77, 98 ,0.5)",
+                data: [1174, 1100, 1102, 1069, 1002, 1060, 1089, 1004, 978, 1010, 951, 980, 912, 958, 949, 1025, 1136, 1013, 1055, 1116, 1274, 1176, 1040, 1048]
+            }]
+        };
+        window.onload = function() {
+            var ctx = document.getElementById("canvas").getContext("2d");
+            window.myBar = new Chart(ctx, {
+                type: 'bar',
+                data: barChartData,
+                options: {
+                    // Elements options apply to all of the options unless overridden in a dataset
+                    // In this case, we are setting the border of each bar to be 2px wide and green
+                    elements: {
+                        rectangle: {
+                            borderWidth: 1,
+                            borderSkipped: 'bottom'
+                        }
+                    },
+                    responsive: true,
+                    legend: {
+                        display: true,
+                        position: 'bottom'
+                    },
+                    title: {
+                        display: false,
+                        text: 'Chart.js Bar Chart'
+                    }
+                }
+            });
+        };
+    </script>
+</body>
+
+</html>
